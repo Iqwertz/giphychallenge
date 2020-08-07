@@ -1,3 +1,4 @@
+import { faFrown } from '@fortawesome/free-solid-svg-icons';
 import { environment } from './../../../environments/environment';
 import { Subject } from 'rxjs';
 import { LoadMore } from './../../services/load-more.service';
@@ -27,11 +28,13 @@ export class SearchComponent implements OnInit {
   search$ = new Subject<string>();
   gifAmount: number = environment.gifAmount;
   searchDelay: number = 150;
+  faFrown = faFrown;
 
   constructor(
     private searchService: SearchService,
     public favoriteService: FavoriteService,
-    private trendingService: TrendingService
+    private trendingService: TrendingService,
+    private loadMore: LoadMore
   ) {}
 
   ngOnInit(): void {
@@ -76,17 +79,6 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  //favorites function - gets as favorites saved gifs ftrom the favorites service
-  displayFavorites() {
-    this.enableStickerSelection = false;
-    this.moreGifs = false;
-    this.loader = true;
-    this.favoriteService.getFavorites().subscribe((result) => {
-      this.gifs = result;
-      this.loader = false;
-    });
-  }
-
   //search function - validates the search and makes a http get request
   search(q: string) {
     this.enableStickerSelection = true;
@@ -120,5 +112,23 @@ export class SearchComponent implements OnInit {
     } else {
       this.showTrending();
     }
+  }
+
+  //loads more gifs with the help of the load more service
+  getMore() {
+    document.getElementById('moreb').blur();
+    this.loader = true;
+    this.loadMore
+      .load(
+        this.gifs?.data.length,
+        this.gifAmount,
+        this.currentSearch,
+        this.showStickers
+      )
+      .subscribe((result) => {
+        this.moreGifs = result.data.length == this.gifAmount; //check if the amount ofgifs got returned that was requested - if not it means that ther are no more gifs left
+        this.gifs.data = this.gifs.data.concat(result.data); //add the new results to the gif list
+        this.loader = false;
+      });
   }
 }

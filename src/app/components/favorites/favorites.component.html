@@ -1,0 +1,13 @@
+<!--Loop through every gifObj. and display it-->
+<h1>Your Favorites</h1>
+<div class="result-container">
+  <div *ngFor="let gifObj of gifs?.data">
+    <app-gif
+      [title]="gifObj.title"
+      [url]="gifObj.url"
+      [id]="gifObj.id"
+      [liked]="favoriteService.hasFavorite(gifObj.id)"
+      (favButtonPressed)="favButtonPressed($event)"
+    ></app-gif>
+  </div>
+</div>

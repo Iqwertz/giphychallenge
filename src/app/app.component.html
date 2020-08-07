@@ -50,7 +50,13 @@
 </div>
 -->
 
-<a routerLink="/">Root</a>
-<br />
-<a routerLink="/about">About</a>
 <router-outlet> </router-outlet>
+
+<div class="select-rout-container">
+  <a *ngIf="router.url == '/search'" routerLink="/favorite"
+    ><fa-icon [icon]="faHeart"></fa-icon
+  ></a>
+  <a *ngIf="router.url == '/favorite'" routerLink="/search">
+    <fa-icon [icon]="faSearch"></fa-icon>
+  </a>
+</div>

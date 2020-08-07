@@ -12,7 +12,6 @@ export class SearchFieldComponent {
   @Output() searchInputChange = new EventEmitter<string>();
 
   @Output() triggerTrending = new EventEmitter();
-  @Output() triggerFavorites = new EventEmitter();
 
   @Output() triggerDynamicSearch = new EventEmitter<string>();
 

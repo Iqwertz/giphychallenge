@@ -8,7 +8,6 @@
     [smallLoader]="smallLoader"
     [(searchInput)]="searchInput"
     (triggerTrending)="showTrending()"
-    (triggerFavorites)="displayFavorites()"
     (triggerDynamicSearch)="dynamicSearch($event)"
     (triggerSearch)="search($event)"
   ></app-search-field>
@@ -24,4 +23,22 @@
       ></app-gif>
     </div>
   </div>
+
+  <div class="nogifs-container" *ngIf="!gifs?.data?.length">
+    <h1>Sorry, No Gifs found!</h1>
+    <br />
+    <fa-icon [icon]="faFrown"></fa-icon>
+  </div>
+
+  <button
+    (click)="getMore()"
+    *ngIf="moreGifs"
+    type="button"
+    class="more-button"
+    id="moreb"
+  >
+    More
+  </button>
+
+  <app-loader [loader]="loader"></app-loader>
 </div>

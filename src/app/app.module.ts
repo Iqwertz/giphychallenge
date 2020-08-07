@@ -15,16 +15,22 @@ import {
   FontAwesomeModule,
   FaIconLibrary,
 } from '@fortawesome/angular-fontawesome';
-import { faFrown, faHeart, fas } from '@fortawesome/free-solid-svg-icons';
+import {
+  faFrown,
+  faHeart,
+  faSearch,
+  fas,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { AppComponent } from './app.component';
-import { FavoritesResultsComponent } from './components/favorites-results/favorites-results.component';
 import { SearchComponent } from './components/search/search.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 const routes: Routes = [
   {
-    path: 'favorites',
-    component: FavoritesResultsComponent,
+    path: 'favorite',
+    component: FavoritesComponent,
   },
   {
     path: 'search',
@@ -40,9 +46,11 @@ const routes: Routes = [
     AppComponent,
     GifComponent,
     SearchModeComponent,
-    FavoritesResultsComponent,
+    FavoritesComponent,
     SearchComponent,
     SearchFieldComponent,
+    FavoritesComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +65,6 @@ const routes: Routes = [
 export class AppModule {
   constructor(library: FaIconLibrary) {
     library.addIconPacks(fas);
-    library.addIcons(faHeart);
+    library.addIcons(faHeart, faFrown, faSearch);
   }
 }
