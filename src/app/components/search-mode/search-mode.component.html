@@ -1,0 +1,24 @@
+<div class="search-mode-container" *ngIf="enableStickerSelection">
+  <button
+    [ngClass]="{
+      enabeld: !showStickers,
+      disabeld: showStickers
+    }"
+    (click)="ChangeSearchMode('Gif')"
+    id="Gif"
+    type="button"
+  >
+    GIFs
+  </button>
+  <button
+    [ngClass]="{
+      enabeld: showStickers,
+      disabeld: !showStickers
+    }"
+    (click)="ChangeSearchMode('Sticker')"
+    id="Sticker"
+    type="button"
+  >
+    Stickers
+  </button>
+</div>

@@ -1,0 +1,50 @@
+<app-search-mode
+  [showStickers]="showStickers"
+  (showStickersChange)="setSearchMode($event)"
+  [(enableStickerSelection)]="enableStickerSelection"
+></app-search-mode>
+
+<div class="component-container">
+  <app-search
+    [smallLoader]="smallLoader"
+    [(searchInput)]="searchInput"
+    (triggerTrending)="showTrending()"
+    (triggerFavorites)="displayFavorites()"
+    (triggerDynamicSearch)="dynamicSearch($event)"
+    (triggerSearch)="search($event)"
+  ></app-search>
+  <!-- Loop through every gifObj. and display it-->
+  <div class="result-container">
+    <div *ngFor="let gifObj of gifs?.data">
+      <app-gif
+        [title]="gifObj.title"
+        [url]="gifObj.url"
+        [id]="gifObj.id"
+        [liked]="favoriteService.hasFavorite(gifObj.id)"
+        (favButtonPressed)="favButtonPressed($event)"
+      ></app-gif>
+    </div>
+  </div>
+
+  <button
+    (click)="getMore()"
+    *ngIf="moreGifs"
+    type="button"
+    class="more-button"
+  >
+    More
+  </button>
+
+  <div class="nogifs-container" *ngIf="!gifs?.data?.length">
+    <h1>Sorry, No Gifs found!</h1>
+    <br />
+    <fa-icon [icon]="faFrown"></fa-icon>
+  </div>
+
+  <div class="loading-container" *ngIf="loader">
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<!-- template of an Gif container-->
+<div class="gif-container">
+  <img [src]="mediaUrl" />
+  <h3>{{ title }}</h3>
+  <a [href]="url" target="_blank">Link</a>
+  <button (click)="HeartClicked()">
+    <fa-icon class="unlike" [icon]="faHeart" *ngIf="!liked"></fa-icon>´
+    <fa-icon class="like" [icon]="faHeart" *ngIf="liked"></fa-icon>
+  </button>
+</div>

@@ -1,0 +1,55 @@
+@import "././src/scss/variables";
+
+.gif-container {
+  position: relative;
+  text-align: center;
+  width: 250px;
+  height: 300px;
+  background-color: $gif-container-color;
+  border-radius: 20px;
+  color: $gif-text-color;
+  padding: 20px;
+  margin: 25px;
+
+  img {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+  }
+
+  a {
+    padding: 3px;
+    background-color: $gif-link-color;
+    border-radius: 5px;
+    color: #000000;
+  }
+
+  h3 {
+    height: 2.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  button {
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    position: absolute;
+    bottom: 25px;
+    right: 18px;
+
+    fa-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 2em;
+
+      &.like {
+        color: $liked-color;
+      }
+
+      &.unlike {
+        color: $unliked-color;
+      }
+    }
+  }
+}
