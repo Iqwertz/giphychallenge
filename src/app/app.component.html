@@ -1,19 +1,19 @@
-<app-search-mode
+<!--<app-search-mode
   [showStickers]="showStickers"
   (showStickersChange)="setSearchMode($event)"
   [(enableStickerSelection)]="enableStickerSelection"
 ></app-search-mode>
 
 <div class="component-container">
-  <app-search
+  <app-search-field
     [smallLoader]="smallLoader"
     [(searchInput)]="searchInput"
     (triggerTrending)="showTrending()"
     (triggerFavorites)="displayFavorites()"
     (triggerDynamicSearch)="dynamicSearch($event)"
     (triggerSearch)="search($event)"
-  ></app-search>
-  <!-- Loop through every gifObj. and display it-->
+  ></app-search-field>
+   Loop through every gifObj. and display it
   <div class="result-container">
     <div *ngFor="let gifObj of gifs?.data">
       <app-gif
@@ -48,3 +48,9 @@
     </div>
   </div>
 </div>
+-->
+
+<a routerLink="/">Root</a>
+<br />
+<a routerLink="/about">About</a>
+<router-outlet> </router-outlet>

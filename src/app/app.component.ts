@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   smallLoader: boolean = false;
   showStickers: boolean = false;
   enableStickerSelection: boolean = true;
-  searchDelay = 150;
+  searchDelay: number = 150;
   faFrown = faFrown;
 
   constructor(
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('init'); //log init (for debugging)
+    /*  console.log('init'); //log init (for debugging)
     this.showTrending(); //shows Trends
 
     this.search$
@@ -61,11 +61,11 @@ export class AppComponent implements OnInit {
         this.gifs = response;
         this.smallLoader = false;
         this.moreGifs = this.gifs.data.length == this.gifAmount;
-      });
+      });*/
   }
 
   //search function - validates the search and makes a http get request
-  search(q: string) {
+  /*search(q: string) {
     this.enableStickerSelection = true;
     if (this.currentSearch != q) {
       this.currentSearch = this.searchInput;
@@ -80,10 +80,10 @@ export class AppComponent implements OnInit {
         this.moreGifs = this.gifs.data.length == this.gifAmount;
         this.loader = false;
       });
-  }
+  }*/
 
   //trending function - gets trending gifs with the trending service
-  showTrending() {
+  /*  showTrending() {
     this.currentSearch = '';
     this.enableStickerSelection = true;
     this.loader = true;
@@ -91,14 +91,16 @@ export class AppComponent implements OnInit {
       this.gifs = result;
       this.loader = false;
     });
-  }
+  }*/
 
+  /*
   favButtonPressed(id: string) {
     this.favoriteService.toggleFavorite(id);
   }
+*/
 
   //favorites function - gets as favorites saved gifs ftrom the favorites service
-  displayFavorites() {
+  /*displayFavorites() {
     this.enableStickerSelection = false;
     this.moreGifs = false;
     this.loader = true;
@@ -106,7 +108,7 @@ export class AppComponent implements OnInit {
       this.gifs = result;
       this.loader = false;
     });
-  }
+  }*/
 
   //loads more gifs with the help of the load more service
   getMore() {
@@ -125,6 +127,7 @@ export class AppComponent implements OnInit {
       });
   }
 
+  /*
   setSearchMode(stickerMode: boolean) {
     this.showStickers = stickerMode;
     if (this.currentSearch) {
@@ -132,9 +135,11 @@ export class AppComponent implements OnInit {
     } else {
       this.showTrending();
     }
-  }
+  }*/
 
+  /*
   dynamicSearch(input: string) {
     this.search$.next(input);
   }
+  */
 }

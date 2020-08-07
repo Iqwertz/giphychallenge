@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  gifAmount: 25, //amount of gifs loaded per search
 };
 
 /*
