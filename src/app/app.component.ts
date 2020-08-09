@@ -1,6 +1,6 @@
 import { environment } from './../environments/environment';
 import { ResponseInterface } from './services/search.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faHeart, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';

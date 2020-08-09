@@ -53,7 +53,7 @@
 <router-outlet> </router-outlet>
 
 <div class="select-rout-container">
-  <a *ngIf="router.url == '/search'" routerLink="/favorite"
+  <a *ngIf="router.url == '/search' || router.url == '/'" routerLink="/favorite"
     ><fa-icon [icon]="faHeart"></fa-icon
   ></a>
   <a *ngIf="router.url == '/favorite'" routerLink="/search">

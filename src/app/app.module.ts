@@ -37,6 +37,10 @@ const routes: Routes = [
     component: SearchComponent,
   },
   {
+    path: '',
+    component: SearchComponent,
+  },
+  {
     path: '**',
     component: NotFoundComponent,
   },
