@@ -3,7 +3,6 @@
   (showStickersChange)="setSearchMode($event)"
   [(enableStickerSelection)]="enableStickerSelection"
 ></app-search-mode>
-
 <div class="component-container">
   <app-search-field
     [smallLoader]="smallLoader"
@@ -25,7 +24,6 @@
       ></app-gif>
     </div>
   </div>
-
   <button
     (click)="getMore()"
     *ngIf="moreGifs"
@@ -34,13 +32,11 @@
   >
     More
   </button>
-
   <div class="nogifs-container" *ngIf="!gifs?.data?.length">
     <h1>Sorry, No Gifs found!</h1>
     <br />
     <fa-icon [icon]="faFrown"></fa-icon>
   </div>
-
   <div class="loading-container" *ngIf="loader">
     <div class="lds-ripple">
       <div></div>
@@ -53,9 +49,12 @@
 <router-outlet> </router-outlet>
 
 <div class="select-rout-container">
-  <a *ngIf="router.url == '/search'" routerLink="/favorite"
-    ><fa-icon [icon]="faHeart"></fa-icon
-  ></a>
+  <a
+    *ngIf="router.url == '/search' || router.url == '/'"
+    routerLink="/favorite"
+  >
+    <fa-icon [icon]="faHeart"></fa-icon>
+  </a>
   <a *ngIf="router.url == '/favorite'" routerLink="/search">
     <fa-icon [icon]="faSearch"></fa-icon>
   </a>
