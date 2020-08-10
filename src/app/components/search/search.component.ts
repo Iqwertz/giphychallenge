@@ -1,6 +1,7 @@
+import { WindowScrollService } from './../../services/window-scroll.service';
 import { faFrown } from '@fortawesome/free-solid-svg-icons';
 import { environment } from './../../../environments/environment';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { LoadMore } from './../../services/load-more.service';
 import { TrendingService } from './../../services/trending.service';
 import { FavoriteService } from './../../services/favorites.service';
@@ -8,7 +9,7 @@ import {
   SearchService,
   ResponseInterface,
 } from './../../services/search.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { tap, debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
@@ -29,13 +30,19 @@ export class SearchComponent implements OnInit {
   gifAmount: number = environment.gifAmount;
   searchDelay: number = 150;
   faFrown = faFrown;
+  scrollY$: Observable<number>;
+  autoLoadMoreDiffrence: number = 2000;
+  autoLoadStarted: boolean = false;
 
   constructor(
     private searchService: SearchService,
     public favoriteService: FavoriteService,
     private trendingService: TrendingService,
-    private loadMore: LoadMore
-  ) {}
+    private loadMore: LoadMore,
+    private windowScrollService: WindowScrollService
+  ) {
+    this.scrollY$ = this.windowScrollService.scrollY$;
+  }
 
   ngOnInit(): void {
     console.log('init'); //log init (for debugging)
@@ -130,5 +137,40 @@ export class SearchComponent implements OnInit {
         this.gifs.data = this.gifs.data.concat(result.data); //add the new results to the gif list
         this.loader = false;
       });
+  }
+
+  @HostListener('window:scroll') onScroll(): void {
+    if (
+      this.getScrollHeight() - this.getYPosition() <=
+      this.autoLoadMoreDiffrence
+    ) {
+      if (!this.autoLoadStarted) {
+        this.autoLoadStarted = true;
+        this.loadMore
+          .load(
+            this.gifs?.data.length,
+            this.gifAmount,
+            this.currentSearch,
+            this.showStickers
+          )
+          .subscribe((result) => {
+            this.moreGifs = result.data.length == this.gifAmount; //check if the amount ofgifs got returned that was requested - if not it means that ther are no more gifs left
+            this.gifs.data = this.gifs.data.concat(result.data); //add the new results to the gif list
+            this.loader = false;
+            this.autoLoadStarted = false;
+          });
+      }
+    }
+  }
+  getYPosition(): number {
+    return this.getScrollingElement().scrollTop;
+  }
+
+  getScrollingElement(): Element {
+    return document.scrollingElement || document.documentElement;
+  }
+
+  getScrollHeight(): number {
+    return this.getScrollingElement().scrollHeight;
   }
 }
