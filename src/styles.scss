@@ -1,2 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./scss/variables"
+@import "./scss/variables";
+
+html {
+  min-height: 100%;
+  background: $background-gradient;
+  background-attachment: fixed;
+}
+
+body {
+}

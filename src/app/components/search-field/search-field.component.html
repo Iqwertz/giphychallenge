@@ -1,0 +1,25 @@
+<div class="search-container">
+  <h1>Giphy Search</h1>
+
+  <!--Search field-->
+  <form (ngSubmit)="search(searchInput)">
+    <div class="pseudo-parent">
+      <div *ngIf="smallLoader" class="small-loading-container">
+        <div class="lds-facebook">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <input
+      name="SearchField"
+      [(ngModel)]="searchInput"
+      (input)="onInputChange(searchInput)"
+      type="search"
+      placeholder="Search for Gifs"
+    />
+    <button type="submit">SEARCH</button>
+    <button type="reset" (click)="triggerTrending.emit()">Clear</button>
+  </form>
+</div>

@@ -1,86 +1,42 @@
 @import "./src/scss/variables";
 
-.search-container {
+.component-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
   text-align: center;
 
-  button {
-    padding: 3px 12px;
-    margin: 2px 4px;
-    font-size: 1em;
-    border: 0;
-    border-radius: 3px;
+  h1 {
+    font-size: 3em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
-  input {
-    padding: 3px 12px 3px 3px;
+  .nogifs-container {
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    margin: 80px 0;
+    text-align: center;
 
-    margin: 2px 4px;
-    font-size: 1em;
-    border: 0;
-    border-radius: 3px;
-    width: 200px;
-    &::-ms-clear {
-      display: none;
-    }
-    &::-webkit-search-decoration,
-    &::-webkit-search-cancel-button,
-    &::-webkit-search-results-button,
-    &::-webkit-search-results-decoration {
-      display: none;
+    fa-icon {
+      font-size: 3em;
     }
   }
 
-  .favorites-container {
-    margin: 5px;
+  .more-button {
+    align-self: center;
+    font-size: 2em;
+    margin: 40px;
+    padding: 10px 35px;
+    border: 0;
+    border-radius: 5px;
+    background-color: $button-color;
   }
 }
 
-.pseudo-parent {
-  position: relative;
-  width: 0;
-  height: 0;
-  .small-loading-container {
-    z-index: 5;
-    position: absolute;
-    top: -2px;
-    right: -50vw;
-  }
-}
-
-.lds-facebook {
-  display: inline-block;
-  position: relative;
-  width: 80px * $small-loader-size;
-  height: 80px * $small-loader-size;
-}
-.lds-facebook div {
-  display: inline-block;
-  position: absolute;
-  left: 8px * $small-loader-size;
-  width: 16px * $small-loader-size;
-  background: $small-loader-color;
-  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-}
-.lds-facebook div:nth-child(1) {
-  left: 8px * $small-loader-size;
-  animation-delay: -0.24s;
-}
-.lds-facebook div:nth-child(2) {
-  left: 32px * $small-loader-size;
-  animation-delay: -0.12s;
-}
-.lds-facebook div:nth-child(3) {
-  left: 56px * $small-loader-size;
-  animation-delay: 0;
-}
-@keyframes lds-facebook {
-  0% {
-    top: 8px * $small-loader-size;
-    height: 64px * $small-loader-size;
-  }
-  50%,
-  100% {
-    top: 24px * $small-loader-size;
-    height: 32px * $small-loader-size;
-  }
+.result-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
